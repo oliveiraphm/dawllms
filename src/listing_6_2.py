@@ -11,7 +11,7 @@ OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 
 
 def load_images(in_dir):
-    name_to_image = []
+    name_to_image = {}
     file_names = os.listdir(in_dir)
     for file_name in file_names:
         if file_name.endswith('.png'):
@@ -31,7 +31,7 @@ def create_prompt(person_image, image_to_label):
     for image in [person_image, image_to_label]:
         image_url = {'url':f'data:image/png;base64,{image}'}
         image_msg = {'type':'image_url', 'image_url':image_url}
-        prompt += {image_msg}
+        prompt += [image_msg]
 
     return prompt
 
